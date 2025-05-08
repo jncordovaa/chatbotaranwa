@@ -15,7 +15,7 @@ import random
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN", "mi_token_unico_12345")
 PHONE_ID     = "674027565786401"
 WHATSAPP_API = f"https://graph.facebook.com/v13.0/{PHONE_ID}/messages"
-ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", "EAAbIBxQGVy0BO1i95YfXArjZCX9Jn8HchKLnxxV12CpnZBopUC59h02c2lBnL0nRib7VXWfeKmfKZBMNRvZCGk0wUE1J2BiHZCPnCsJAQVcKOCTW7y0SUGuCZB713yC092ZBsYHPZBKS3MkMms3yL0CfDBNbBNsTVymLsxAM1tzjGQZA0ZBnVrT2IXPjKyNz1b1zV09PmAMTZBIJeVd1DIfyhHBIbncAKNwBk1pZASxVI9Xt")
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", "EAARb59BnNbYBOZCjWZC8YUd9twznY0AZBga3hNf3jZChREzps6RlTHrPjOuAaimHZC1ZCxOntS7T4OZBtF8lKRSms3VWBJJm7GN9FfPPCO3BoNPAkVzTQSIgwpIs1EMhBtjKDph7t9NEdAtdBVshn5soWBtwhe8uk0Qkgxn3SKZCMALVWVhtFHXUoZCWPoRICmOaIvuEHNW3OcZBbAZANGOZBoZAE1AEcss4gmuXGIAFo")
 # Inicializar Firebase
 if not firebase_admin._apps:
     cred = credentials.Certificate("aranwa-firebase-adminsdk-fbsvc-3c411ca00c.json")
@@ -120,7 +120,7 @@ def obtener_recomendacion(mensaje_normalizado):
 # Obtener contexto desde Firebase, ordenado por categoria y nombre
 def obtener_contexto():
     try:
-        carta = db.collection('carta').get()
+        carta = db.collection('reservation').get()
         contexto = "Menú del restaurante:\n"
         for item in carta:
             item_data = item.to_dict()
