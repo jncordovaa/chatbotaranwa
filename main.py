@@ -23,7 +23,7 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 # Cargar modelo de Hugging Face
-model_name = "NadiaLiz/Llama-3.2"
+model_name = "Jncordovaa/Llama-3.2"
 tokenizer  = AutoTokenizer.from_pretrained(model_name)
 device     = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model      = AutoModelForCausalLM.from_pretrained(
@@ -134,8 +134,13 @@ def obtener_contexto():
 def generar_respuesta(mensaje, contexto):
     prompt = (
         f"{contexto}\n\n"
-        f"Eres un asistente de Sabor y Sazón (un restaurante de comid peruana) que ayuda con el menú. "
-        f"Responde de forma amable, precisa y breve, usando la información del menú. "
+        f"Eres un chatbot de reservas para Aranwa Hotels Resorts & Spas en Perú. Tu objetivo es ayudar a los usuarios a realizar reservas, manejando tanto casos ideales como no ideales. Sigue estos pasos:"
+        f"1. Interpreta la intención del usuario, incluso si la entrada es ambigua. "
+        f"2. Si faltan detalles (hotel, fechas, personas), pídelos amablemente. "
+        f"3. Verifica disponibilidad en la base de datos (simula la consulta a Firebase). "
+        f"4. Ofrece alternativas (fechas, hoteles) si no hay disponibilidad. "
+        f"5. Si la pregunta no es sobre reservas, responde amablemente que solo manejas reservas de Aranwa Hotels y ofrece ayuda con eso. "
+        f"6. Usa un tono amigable y profesional. "
         f"Si no entiendes, pide aclaraciones.\n\n"
         f"Usuario: {mensaje}\n"
         f"Asistente:"
@@ -209,8 +214,7 @@ def webhook():
 
     # Manejar casos específicos
     if "hola" in incoming_msg_normalizado:
-        respuesta = ("¡Hola! Bienvenido al restaurante Sabor y Sazón. ¿Quieres ver la carta, saber el precio de un plato, "
-                     "o necesitas una recomendación?")
+        respuesta = ("¡Hola! Bienvenido a Aranwa Hotels Resorts & Spas. ¿Quieres realizar una reservación?")
 
     elif es_pregunta_carta:
         respuesta = obtener_carta()
@@ -225,12 +229,12 @@ def webhook():
             if not respuesta:
                 respuesta = f"Lo siento, no encontré detalles para '{plato}'."
         else:
-            respuesta = "¿De qué plato deseas saber el precio?"
+            respuesta = "Especifica nuevamente tu consulta"
 
     else:
         respuesta = generar_respuesta(incoming_msg, contexto)
         if not respuesta or len(respuesta) < 10:
-            respuesta = "No entendí tu mensaje. ¿Puedes especificar si quieres la carta, un precio, o una recomendación?"
+            respuesta = "No entendí tu mensaje."
 
     print("Respuesta generada:", respuesta)
 
