@@ -18,7 +18,7 @@ WHATSAPP_API = f"https://graph.facebook.com/v13.0/{PHONE_ID}/messages"
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", "EAAbIBxQGVy0BO1i95YfXArjZCX9Jn8HchKLnxxV12CpnZBopUC59h02c2lBnL0nRib7VXWfeKmfKZBMNRvZCGk0wUE1J2BiHZCPnCsJAQVcKOCTW7y0SUGuCZB713yC092ZBsYHPZBKS3MkMms3yL0CfDBNbBNsTVymLsxAM1tzjGQZA0ZBnVrT2IXPjKyNz1b1zV09PmAMTZBIJeVd1DIfyhHBIbncAKNwBk1pZASxVI9Xt")
 # Inicializar Firebase
 if not firebase_admin._apps:
-    cred = credentials.Certificate("saborysazon-55dcf-firebase-adminsdk-fbsvc-7ac822bdce.json")
+    cred = credentials.Certificate("aranwa-firebase-adminsdk-fbsvc-3c411ca00c.json")
     firebase_admin.initialize_app(cred)
 db = firestore.client()
 
