@@ -1,0 +1,10 @@
+flask
+transformers
+requests
+bitsandbytes
+firebase_admin
+torch
+fuzzywuzzy
+unidecode
+python-Levenshtein
+
