@@ -24,7 +24,7 @@ db = firestore.client()
 
 # Cargar modelo de Hugging Face
 #model_name = "Jncordovaa/Llama-3.2" 
-model_name = "distilbert-base-uncased"  # Modelo de prueba
+model_name = "gpt2"  # Modelo de prueba
 tokenizer  = AutoTokenizer.from_pretrained(model_name)
 device     = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model      = AutoModelForCausalLM.from_pretrained(
